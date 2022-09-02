@@ -18,7 +18,7 @@ export default function Main() {
           <p>
             Hello, <Image src="/assets/hi.png" width={25} height={25} alt="" />
           </p>
-          <h1>I'm {home.name}</h1>
+          <h1>I&apos;m {home.name}</h1>
           <h5>{home.subtitle}</h5>
           <a
             href={"mailto:" + home.email}
