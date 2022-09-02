@@ -25,7 +25,7 @@ export default function About() {
             <span className="quote">&quot;{about.quote}&quot;</span>
           </div>
 
-          <img src="./assets/coding.svg" alt="" />
+          <Image src="/assets/coding.svg" width={500} height={500} alt="" />
         </section>
       </div>
       <section className="skillset">
