@@ -18,8 +18,8 @@ export const socials = {
 
 export const about = {
   aboutMe:
-    "🙏 Hello, I am Pavan Hegde from Bangalore, India. I am studying my Master's in International Software Systems and Science in Otto Friedrich University of Bamberg Germany. I am experienced in Java and WebDevelopment using ReactJS. Apart from coding, there are a lot of activities I love to do like...",
-  hobbies: ["Basketball", "Chess", "Hiking", "Swimming"],
+    "🙏 Hello, I am Pavan Hegde from Bangalore, India. I am studying my Master's in International Software Systems and Science in Otto Friedrich University of Bamberg Germany. I am experienced in Java and WebDevelopment using ReactJS.",
+  hobbies: [],
   quote: "Write code that changes Lives...",
   skills: [
     "java",
