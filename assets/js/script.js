@@ -1,117 +1,202 @@
-/* ----- NAVIGATION BAR FUNCTION ----- */
-function myMenuFunction(){
-    var menuBtn = document.getElementById("myNavMenu");
+/* eslint-disable no-unused-vars */
+const menuBar = document.querySelector('.menu-bar'); // mobile menu container
+const btnClose = document.querySelector('.btn-close'); // button for mobile menu
+const btnMenu = document.querySelector('.btn-menu'); // button for the desktop menu
+const navLink = document.querySelectorAll('#mobile-menu-bar li .nav-link');
+const tog = document.getElementsByClassName('toggle');
+const togg = Array.from(tog); // convert the nodelist to an array
+const popupMenu = document.createElement('div'); // create an empty element
+const errMessage = document.querySelector('small');
+const email = document.querySelector('.email');
+const message = document.querySelector('.msg');
+const element = email.parentElement;
+const mediaqueryList = window.matchMedia('(max-width: 768px)');
+const formData = document.querySelector('.form-input'); // gets the form element
 
-    if(menuBtn.className === "nav-menu"){
-      menuBtn.className += " responsive";
-    } else {
-      menuBtn.className = "nav-menu";
-    }
+const [fullName, firstName, lastName] = formData.elements;
+
+const screenTest = (e) => {
+  if (e.matches) {
+    fullName.required = true;
+    firstName.required = false;
+    lastName.required = false;
+    message.required = false;
+  } else {
+    fullName.removeAttribute('required');
+    firstName.required = true;
+    lastName.required = true;
+    message.required = true;
   }
+};
 
-/* ----- ADD SHADOW ON NAVIGATION BAR WHILE SCROLLING ----- */
-  window.onscroll = function() {headerShadow()};
+screenTest(mediaqueryList);
 
-  function headerShadow() {
-    const navHeader =document.getElementById("header");
+mediaqueryList.addEventListener(screenTest);
 
-    if (document.body.scrollTop > 50 || document.documentElement.scrollTop >  50) {
-
-      navHeader.style.boxShadow = "0 1px 6px rgba(0, 0, 0, 0.1)";
-      navHeader.style.height = "70px";
-      navHeader.style.lineHeight = "70px";
-
-    } else {
-
-      navHeader.style.boxShadow = "none";
-      navHeader.style.height = "90px";
-      navHeader.style.lineHeight = "90px";
-
-    }
+btnClose.addEventListener('click', () => {
+  if (menuBar.style.display === 'flex') {
+    menuBar.style.display = 'none';
   }
+});
 
+btnMenu.addEventListener('click', () => {
+  if (menuBar.style.display === 'none') {
+    menuBar.style.display = 'flex';
+  } else {
+    menuBar.style.display = 'none';
+  }
+});
 
-/* ----- TYPING EFFECT ----- */
- var typingEffect = new Typed(".typedText",{
-    strings : ["Developer"],
-    loop : true,
-    typeSpeed : 100, 
-    backSpeed : 80,
-    backDelay : 2000
- })
-
-
-/* ----- ## -- SCROLL REVEAL ANIMATION -- ## ----- */
- const sr = ScrollReveal({
-        origin: 'top',
-        distance: '80px',
-        duration: 2000,
-        reset: true     
- })
-
-/* -- HOME -- */
-sr.reveal('.featured-text-card',{})
-sr.reveal('.featured-name',{delay: 100})
-sr.reveal('.featured-text-info',{delay: 200})
-sr.reveal('.featured-text-btn',{delay: 200})
-sr.reveal('.social_icons',{delay: 200})
-sr.reveal('.featured-image',{delay: 300})
-
-
-/* -- PROJECT BOX -- */
-sr.reveal('.project-box',{interval: 200})
-
-/* -- HEADINGS -- */
-sr.reveal('.top-header',{})
-
-/* ----- ## -- SCROLL REVEAL LEFT_RIGHT ANIMATION -- ## ----- */
-
-/* -- ABOUT INFO & CONTACT INFO -- */
-const srLeft = ScrollReveal({
-  origin: 'left',
-  distance: '80px',
-  duration: 2000,
-  reset: true
-})
-
-srLeft.reveal('.about-info',{delay: 100})
-srLeft.reveal('.contact-info',{delay: 100})
-
-/* -- ABOUT SKILLS & FORM BOX -- */
-const srRight = ScrollReveal({
-  origin: 'right',
-  distance: '80px',
-  duration: 2000,
-  reset: true
-})
-
-srRight.reveal('.skills-box',{delay: 100})
-srRight.reveal('.form-control',{delay: 100})
-
-
-
-/* ----- CHANGE ACTIVE LINK ----- */
-
-const sections = document.querySelectorAll('section[id]')
-
-function scrollActive() {
-  const scrollY = window.scrollY;
-
-  sections.forEach(current =>{
-    const sectionHeight = current.offsetHeight,
-        sectionTop = current.offsetTop - 250,
-      sectionId = current.getAttribute('id')
-
-    if(scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) { 
-
-        document.querySelector('.nav-menu a[href*=' + sectionId + ']').classList.add('active-link')
-
-    }  else {
-
-      document.querySelector('.nav-menu a[href*=' + sectionId + ']').classList.remove('active-link')
-
+navLink.forEach((link) => {
+  link.addEventListener('click', () => {
+    if (menuBar.style.display === 'flex') {
+      menuBar.style.display = 'none';
     }
-  })
+  });
+});
+
+const projects = [
+  {
+    projectImage: './images/calculator-project.jpg',
+    projectName: 'Web Calculator Project',
+    technologies: ['javaScript', 'CSS', 'HTML', 'Ruby'],
+    description:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it 1960s with",
+    links: ['https://www.google.com/', 'https://www.google.com/'],
+  },
+  {
+    projectImage: './images/bank-app.jpg',
+    projectName: 'Mobile Banking Application',
+    technologies: ['javaScript', 'HTML', 'Ruby on rails', 'CSS'],
+    description:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it 1960s with.",
+    links: ['https://www.google.com/', 'https://www.google.com/'],
+  },
+  {
+    projectImage: './images/Blood-Bank-Management-System-Android-Project.webp',
+    projectName: 'Blood Bank Mgt app',
+    technologies: ['javaScript', 'HTML', 'Ruby on rails', 'CSS'],
+    description:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it 1960s with.",
+    links: ['https://www.google.com//', 'https://www.google.com/'],
+  },
+  {
+    projectImage: './images/calculator-project.jpg',
+    projectName: 'Web Calculator Project',
+    technologies: ['javaScript', 'Css', 'Html', 'Ruby'],
+    description:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it 1960s with.",
+    links: ['https://www.google.com/', 'https://www.google.com/'],
+  },
+  {
+    projectImage: './images/bank-app.jpg',
+    projectName: 'Mobile Banking Application',
+    technologies: ['javaScript', 'HTML', 'Ruby on rails', 'CSS'],
+    description:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it 1960s with.",
+    links: ['https://www.google.com/', 'https://www.google.com/'],
+  },
+  {
+    projectImage: './images/Blood-Bank-Management-System-Android-Project.webp',
+    projectName: 'Blood Bank Mgt app',
+    technologies: ['javaScript', 'HTML', 'Ruby on rails', 'CSS'],
+    description:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it 1960s with.",
+    links: ['https://www.google.com//', 'https://www.google.com/'],
+  },
+];
+
+function callPop(index) {
+  const popUp = `<section class="popup toggle" id="popup-1">
+  <div class="content">
+      <button type="button" class="btn-close-details">
+          <img src="./images/Icon-Cancel.svg" alt="cancel icon" />
+        </button>
+        <div class="project-image">
+          <img src="${projects[index].projectImage}" alt="a guy with a backpack in mountain" />
+        </div>
+        <h2 class="project-title">${projects[index].projectName}</h2>
+        <ul class="proj-language-list">
+          <li class="list-items">${projects[index].technologies[0]}</li>
+          <li class="list-items">${projects[index].technologies[1]}</li>
+          <li class="list-items">${projects[index].technologies[2]}</li>
+        </ul>
+        <p class="project-description">
+          ${projects[index].description}
+        </p>
+        <div class="card-button-mobile pop-item btn-popup">
+          <a href="${projects[index].links[0]}" class="btn-card-details-mobile"
+            >See Live <img src="./images/see-live.svg" alt="see live icon">
+          </a>
+          <a href="${projects[index].links[1]}" class="btn-card-details-mobile"
+            >See Source <img src="./images/git-img.svg" alt="see github icon">
+          </a>
+        </div>
+  </div>
+
+</section>`;
+  return popUp;
 }
 
-window.addEventListener('scroll', scrollActive)
+// popup logic
+// eslint-disable-next-line no-plusplus
+for (let i = 0; i < togg.length; i++) {
+  togg[i].addEventListener('click', () => {
+    popupMenu.innerHTML = callPop(i);
+    document.body.appendChild(popupMenu);
+    const toggle = document.getElementById('popup-1');
+    toggle.classList.toggle('active');
+    const cancelIcon = document.querySelector('.btn-close-details');
+    cancelIcon.addEventListener('click', () => {
+      toggle.classList.toggle('active');
+    });
+  });
+}
+
+// 
+
+// function onError(input) {
+//   errMessage.style.visibility = 'visible';
+//   errMessage.innerText = input;
+//   element.classList.add('error');
+//   element.classList.remove('success');
+// }
+// Form Validation
+// function onSuccess() {
+//   errMessage.style.visibility = 'hidden';
+//   errMessage.innerText = '';
+//   element.classList.add('success');
+//   element.classList.remove('error');
+// }
+
+// const regex = new RegExp('[A-Z]');
+// function formValidate() {
+//   if (regex.test(email.value)) {
+//     onError('Please set the email in lower case');
+//   } else {
+//     onSuccess();
+//     formData.submit();
+//   }
+// }
+
+// // local storage
+// formData.addEventListener('change', () => {
+//   const userInfo = {
+//     username: fullName.value,
+//     userEmail: email.value,
+//     userText: message.value,
+//   };
+//   localStorage.setItem('data', JSON.stringify(userInfo));
+//   // formValidate();
+// });
+
+// const userInfo = () => {
+//   const data = JSON.parse(localStorage.getItem('data'));
+//   if (data) {
+//     fullName.value = data.username;
+//     email.value = data.userEmail;
+//     message.value = data.userText;
+//   }
+// };
+
+// window.onload = userInfo();
