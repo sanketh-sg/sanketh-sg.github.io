@@ -1,0 +1,20 @@
+---
+import { profile } from '../data/site';
+const others = profile.links.filter((l) => !l.href.startsWith('mailto:'));
+---
+
+<section id="contact" class="mx-auto max-w-5xl px-4 py-20 sm:px-6">
+  <h2 class="text-sm font-semibold tracking-widest text-stone-500 uppercase dark:text-stone-400">Contact</h2>
+  <p class="mt-4 text-2xl font-semibold tracking-tight sm:text-3xl">{profile.contactLine}</p>
+  <p class="mt-4">
+    <a
+      href={`mailto:${profile.email}`}
+      class="text-lg break-all underline decoration-stone-300 underline-offset-4 hover:decoration-stone-900 dark:decoration-stone-600 dark:hover:decoration-stone-100"
+    >{profile.email}</a>
+  </p>
+  <ul class="mt-4 flex gap-5 text-sm">
+    {others.map((l) => (
+      <li><a href={l.href} target="_blank" rel="noopener noreferrer" class="text-stone-600 hover:text-stone-900 dark:text-stone-400 dark:hover:text-stone-100">{l.label}</a></li>
+    ))}
+  </ul>
+</section>

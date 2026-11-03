@@ -1,0 +1,15 @@
+---
+import { education } from '../data/site';
+---
+
+<section id="education" class="mx-auto max-w-5xl px-4 py-16 sm:px-6">
+  <h2 class="text-sm font-semibold tracking-widest text-stone-500 uppercase dark:text-stone-400">Education</h2>
+  <ul class="mt-6 space-y-3">
+    {education.map((e) => (
+      <li>
+        <p class="font-medium">{e.degree}</p>
+        {e.school && <p class="text-sm text-stone-600 dark:text-stone-400">{e.school}</p>}
+      </li>
+    ))}
+  </ul>
+</section>

@@ -29,6 +29,40 @@ test('footer shows the copyright line', () => {
   assert.match(html, /© \d{4} Sanketh S G/);
 });
 
+test('every content section exists and every in-page anchor resolves', () => {
+  for (const id of ['work', 'experience', 'skills', 'education', 'contact']) {
+    assert.ok(html.includes(`id="${id}"`), id);
+  }
+  for (const [, id] of html.matchAll(/href="#([^"]+)"/g)) {
+    assert.ok(html.includes(`id="${id}"`), `#${id} has no target`);
+  }
+});
+
+test('page carries the confirmed contact and profile facts', () => {
+  for (const s of [
+    'mailto:sankethsg2944@gmail.com',
+    'https://www.linkedin.com/in/sanketh-gopalli/',
+    'https://deutsch-lehrer-kqw3.vercel.app',
+    'Cognizant Technology Solutions',
+    'Bamberg, Germany',
+    'University of Bamberg',
+  ]) assert.ok(html.includes(s), s);
+});
+
+test('the h1 is the headline', () => {
+  assert.match(html, /<h1[^>]*>[^<]*I build backends that hold up/);
+});
+
+test('no broken optional links and no résumé button while resumeUrl is unset', () => {
+  assert.doesNotMatch(html, /href=""|href="undefined"|>undefined<|Résumé|Resume/);
+});
+
+test('every image has alt text', () => {
+  for (const img of html.match(/<img\s[^>]*>/g) ?? []) {
+    assert.match(img, /alt="[^"]+"/, img);
+  }
+});
+
 test('links opening a new tab carry noopener noreferrer', () => {
   for (const a of html.match(/<a\s[^>]*target="_blank"[^>]*>/g) ?? []) {
     assert.match(a, /rel="noopener noreferrer"/, a);

@@ -1,0 +1,28 @@
+---
+import { featured, projects, moreProjects } from '../data/site';
+import ProjectCard from './ProjectCard.astro';
+---
+
+<section id="work" class="mx-auto max-w-5xl px-4 py-16 sm:px-6">
+  <h2 class="text-sm font-semibold tracking-widest text-stone-500 uppercase dark:text-stone-400">Selected work</h2>
+
+  <div class="mt-6 grid gap-6 md:grid-cols-2">
+    <ProjectCard project={featured} wide />
+    {projects.map((p) => <ProjectCard project={p} />)}
+  </div>
+
+  <h3 class="mt-14 text-lg font-semibold tracking-tight">More projects</h3>
+  <ul class="mt-4 grid gap-x-8 gap-y-5 md:grid-cols-2">
+    {moreProjects.map((p) => (
+      <li class="border-t border-stone-200 pt-4 dark:border-stone-800">
+        <p class="font-medium">
+          {p.repo
+            ? <a href={p.repo} target="_blank" rel="noopener noreferrer" class="underline decoration-stone-300 underline-offset-4 hover:decoration-stone-900 dark:decoration-stone-600 dark:hover:decoration-stone-100">{p.name}</a>
+            : p.name}
+        </p>
+        <p class="mt-1 text-sm text-stone-600 dark:text-stone-400">{p.tagline}</p>
+        <p class="mt-1 text-xs text-stone-500 dark:text-stone-400">{p.tags.join(' · ')}</p>
+      </li>
+    ))}
+  </ul>
+</section>

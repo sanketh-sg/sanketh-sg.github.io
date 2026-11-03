@@ -1,0 +1,16 @@
+---
+import { skills } from '../data/site';
+import Chip from './Chip.astro';
+---
+
+<section id="skills" class="mx-auto max-w-5xl px-4 py-16 sm:px-6">
+  <h2 class="text-sm font-semibold tracking-widest text-stone-500 uppercase dark:text-stone-400">Skills</h2>
+  <dl class="mt-6 grid gap-6 md:grid-cols-2">
+    {skills.map((s) => (
+      <div>
+        <dt class="font-medium">{s.group}</dt>
+        <dd class="mt-2"><ul class="flex flex-wrap gap-2">{s.items.map((i) => <Chip label={i} />)}</ul></dd>
+      </div>
+    ))}
+  </dl>
+</section>

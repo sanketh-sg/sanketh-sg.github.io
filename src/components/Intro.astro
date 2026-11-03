@@ -1,0 +1,29 @@
+---
+import { profile } from '../data/site';
+---
+
+<section class="mx-auto max-w-5xl px-4 pt-20 pb-16 sm:px-6 sm:pt-28">
+  <h1 class="max-w-3xl text-4xl leading-tight font-bold tracking-tight sm:text-5xl">{profile.headline}</h1>
+  <p class="mt-5 max-w-2xl text-lg text-stone-600 dark:text-stone-400">
+    {profile.subline} · {profile.location}
+  </p>
+  <ul class="mt-8 flex flex-wrap gap-3">
+    {profile.links.map((l, i) => (
+      <li>
+        <a
+          href={l.href}
+          {...(l.href.startsWith('http') ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+          class:list={[
+            'inline-block rounded-lg px-4 py-2 text-sm font-medium focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-900 dark:focus-visible:outline-stone-100',
+            i === 0
+              ? 'bg-stone-900 text-stone-50 hover:bg-stone-700 dark:bg-stone-100 dark:text-stone-900 dark:hover:bg-stone-300'
+              : 'border border-stone-300 hover:bg-stone-200/60 dark:border-stone-700 dark:hover:bg-stone-800',
+          ]}
+        >{l.label}</a>
+      </li>
+    ))}
+    {profile.resumeUrl && (
+      <li><a href={profile.resumeUrl} class="inline-block rounded-lg border border-stone-300 px-4 py-2 text-sm font-medium dark:border-stone-700">Résumé (PDF)</a></li>
+    )}
+  </ul>
+</section>
