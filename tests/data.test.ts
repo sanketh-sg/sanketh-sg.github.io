@@ -46,7 +46,8 @@ test('experience is one Cognizant entry with three groups, platforms included', 
 test('about tells the story from Cognizant to Bamberg to today', () => {
   const text = site.about.join(' ');
   assert.ok(site.about.length >= 3);
-  for (const s of ['Cognizant', 'Genesys Cloud CX', 'memory safety', 'observability', 'German (B1']) {
+  assert.doesNotMatch(text, /memory safety/i);
+  for (const s of ['Cognizant', 'Genesys Cloud CX', 'enabling capabilities in Unix-like operating systems', 'observability', 'German (B1']) {
     assert.ok(text.includes(s), s);
   }
 });
@@ -95,5 +96,5 @@ test('skill groups are in the agreed order', () => {
 test('education lists the Bamberg master with its thesis, and the BSc', () => {
   assert.equal(education.length, 2);
   assert.equal(education[0].school, 'Otto-Friedrich-Universität Bamberg');
-  assert.match(education[0].note ?? '', /memory safety/i);
+  assert.equal(education[0].note, 'Thesis: Enabling capabilities in Unix-like operating systems.');
 });

@@ -105,7 +105,7 @@ export const profile: {
 export const about: string[] = [
   'I’m a software engineer with a foundation in enterprise communication systems, and I work where the two meet.',
   'I started in contact-center and telephony engineering at Cognizant (2017–2022), on Genesys Cloud CX and Cisco UCCE/CUCM. Alongside running these platforms — including a 9-cluster environment and an 11.x → 12.x upgrade across all nine — I got into development: IVR call flows, integrations around the platforms, and software in Java/Spring Boot and modern frontends. That’s where my interest in software engineering took hold.',
-  'It led me to a Master’s in International Software Systems Science at Otto-Friedrich-Universität Bamberg. My thesis was on memory safety at the operating-system level, which sharpened my low-level systems thinking. Alongside it I built applied projects — an AI-driven customer-support agent and a hybrid rules-plus-model classification system — took part in competitive coding events, and got certified in cloud DevOps.',
+  'It led me to a Master’s in International Software Systems Science at Otto-Friedrich-Universität Bamberg. My thesis was on enabling capabilities in Unix-like operating systems, which sharpened my low-level systems thinking. Alongside it I built applied projects — an AI-driven customer-support agent and a hybrid rules-plus-model classification system — took part in competitive coding events, and got certified in cloud DevOps.',
   'Today my focus is backend and distributed systems, cloud-native engineering and observability. I’m based in Bamberg, Germany, and speak German (B1, improving).',
 ];
 
@@ -247,7 +247,7 @@ export const education: { degree: string; school?: string; note?: string }[] = [
   {
     degree: 'Master in International Software Systems Science',
     school: 'Otto-Friedrich-Universität Bamberg',
-    note: 'Thesis: memory safety at the operating-system level.',
+    note: 'Thesis: Enabling capabilities in Unix-like operating systems.',
   },
   { degree: 'BSc in Computer Science Engineering' },
 ];
