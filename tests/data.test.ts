@@ -97,4 +97,7 @@ test('education lists the Bamberg master with its thesis, and the BSc', () => {
   assert.equal(education.length, 2);
   assert.equal(education[0].school, 'Otto-Friedrich-Universität Bamberg');
   assert.equal(education[0].note, 'Thesis: Enabling capabilities in Unix-like operating systems.');
+  assert.equal(education[0].period, 'Oct 2022 – Mar 2026');
+  assert.equal(education[1].school, 'Acharya Institute of Technology');
+  assert.equal(education[1].period, '2012 – 2016');
 });

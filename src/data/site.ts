@@ -243,11 +243,16 @@ export const skills: { group: string; items: string[] }[] = [
   { group: 'AI', items: ['LLM/AI agents', 'Gemini API', 'LLM pipelines with deterministic guards', 'Claude Code'] },
 ];
 
-export const education: { degree: string; school?: string; note?: string }[] = [
+export const education: { degree: string; school?: string; period?: string; note?: string }[] = [
   {
     degree: 'Master in International Software Systems Science',
     school: 'Otto-Friedrich-Universität Bamberg',
+    period: 'Oct 2022 – Mar 2026',
     note: 'Thesis: Enabling capabilities in Unix-like operating systems.',
   },
-  { degree: 'BSc in Computer Science Engineering' },
+  {
+    degree: 'BSc in Computer Science Engineering',
+    school: 'Acharya Institute of Technology',
+    period: '2012 – 2016',
+  },
 ];

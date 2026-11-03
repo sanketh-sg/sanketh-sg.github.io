@@ -66,6 +66,9 @@ test('page carries the confirmed contact and profile facts', () => {
     'Bamberg, Germany',
     'Otto-Friedrich-Universität Bamberg',
     'German (B1',
+    'Oct 2022 – Mar 2026',
+    'Acharya Institute of Technology',
+    '2012 – 2016',
     'href="#about"',
   ]) assert.ok(html.includes(s), s);
 });

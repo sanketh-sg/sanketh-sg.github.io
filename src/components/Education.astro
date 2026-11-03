@@ -7,7 +7,10 @@ import { education } from '../data/site';
   <ul class="mt-6 space-y-3">
     {education.map((e) => (
       <li>
-        <p class="font-medium">{e.degree}</p>
+        <div class="flex flex-wrap items-baseline justify-between gap-x-4">
+          <p class="font-medium">{e.degree}</p>
+          {e.period && <p class="text-sm text-stone-500 dark:text-stone-400">{e.period}</p>}
+        </div>
         {e.school && <p class="text-sm text-stone-600 dark:text-stone-400">{e.school}</p>}
         {e.note && <p class="text-sm text-stone-500 dark:text-stone-400">{e.note}</p>}
       </li>
