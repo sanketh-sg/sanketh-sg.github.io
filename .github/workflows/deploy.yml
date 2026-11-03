@@ -19,7 +19,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
-      - uses: pnpm/action-setup@v6 # version comes from packageManager in package.json
+      # Version comes from packageManager in package.json. standalone installs a
+      # self-contained pnpm, so it doesn't depend on the runner's default Node.
+      - uses: pnpm/action-setup@v6
+        with:
+          standalone: true
       - uses: actions/setup-node@v7
         with:
           node-version: 26
