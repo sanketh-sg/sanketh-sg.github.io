@@ -99,7 +99,7 @@ export const profile: {
     { label: 'Email', href: `mailto:${email}` },
   ],
   contactLine:
-    'Open to full-stack, backend and platform roles — and to contact center, UC and CCaaS engineering.',
+    'Open to full-stack, backend and platform roles and to contact center, UC and CCaaS engineering.',
 };
 
 export const about: string[] = [
