@@ -9,6 +9,7 @@ import { education } from '../data/site';
       <li>
         <p class="font-medium">{e.degree}</p>
         {e.school && <p class="text-sm text-stone-600 dark:text-stone-400">{e.school}</p>}
+        {e.note && <p class="text-sm text-stone-500 dark:text-stone-400">{e.note}</p>}
       </li>
     ))}
   </ul>

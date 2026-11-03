@@ -35,10 +35,26 @@ test('message router has no repo link', () => {
   assert.equal(router.repo, undefined);
 });
 
-test('experience is one Cognizant entry with two groups', () => {
+test('experience is one Cognizant entry with three groups, platforms included', () => {
   assert.equal(experience.company, 'Cognizant Technology Solutions');
   assert.equal(experience.period, '2017 – 2022');
-  assert.equal(experience.groups.length, 2);
+  assert.deepEqual(experience.groups.map((g) => g.title), [
+    'Backend & integration', 'Contact center & UC platforms', 'Full-stack & delivery',
+  ]);
+});
+
+test('about tells the story from Cognizant to Bamberg to today', () => {
+  const text = site.about.join(' ');
+  assert.ok(site.about.length >= 3);
+  for (const s of ['Cognizant', 'Genesys Cloud CX', 'memory safety', 'observability', 'German (B1']) {
+    assert.ok(text.includes(s), s);
+  }
+});
+
+test('contact line names every kind of role he is open to', () => {
+  for (const s of ['full-stack', 'backend', 'platform', 'contact center', 'UC', 'CCaaS']) {
+    assert.ok(profile.contactLine.includes(s), s);
+  }
 });
 
 test('copy uses conservative numbers and has no placeholders', () => {
@@ -68,11 +84,16 @@ test('every skill and tag has a valid glow colour', () => {
 
 test('skill groups are in the agreed order', () => {
   assert.deepEqual(skills.map((s) => s.group), [
-    'Backend', 'Frontend', 'Data & messaging', 'Cloud & DevOps', 'Testing & practice', 'AI',
+    'Backend', 'Frontend', 'Data & messaging', 'Cloud & DevOps', 'Contact center & UC', 'Testing & practice', 'AI',
   ]);
+  const all = skills.flatMap((s) => s.items);
+  for (const s of ['Observability (LGTM)', 'SIP/VoIP', 'Genesys Cloud CX', 'Cisco UCCE/CUCM', 'LLM/AI agents']) {
+    assert.ok(all.includes(s), s);
+  }
 });
 
-test('education lists the Bamberg master and the BSc', () => {
+test('education lists the Bamberg master with its thesis, and the BSc', () => {
   assert.equal(education.length, 2);
-  assert.equal(education[0].school, 'University of Bamberg');
+  assert.equal(education[0].school, 'Otto-Friedrich-Universität Bamberg');
+  assert.match(education[0].note ?? '', /memory safety/i);
 });

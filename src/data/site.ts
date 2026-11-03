@@ -59,6 +59,11 @@ const brand: Record<string, string> = {
   Gemini: '#8E75FF',
   'Gemini API': '#8E75FF',
   'Claude Code': '#D97757',
+  'Observability (LGTM)': '#F46800',
+  'Genesys Cloud CX': '#FF4F1F',
+  'Genesys Architect': '#FF4F1F',
+  'Cisco UCCE/CUCM': '#049FD9',
+  'Salesforce CTI': '#00A1E0',
 };
 const neutral = '#A8A29E'; // stone-400, for skills without a brand colour
 
@@ -95,8 +100,16 @@ export const profile: {
     { label: 'LinkedIn', href: 'https://www.linkedin.com/in/sanketh-gopalli/' },
     { label: 'Email', href: `mailto:${email}` },
   ],
-  contactLine: 'Open to backend and full-stack roles.',
+  contactLine:
+    'Open to full-stack, backend and platform roles — and to contact center, UC and CCaaS engineering.',
 };
+
+export const about: string[] = [
+  'I’m a software engineer with a foundation in enterprise communication systems, and I work where the two meet.',
+  'I started in contact-center and telephony engineering at Cognizant (2017–2022), on Genesys Cloud CX and Cisco UCCE/CUCM. Alongside running these platforms — including a 9-cluster environment and an 11.x → 12.x upgrade across all nine — I got into development: IVR call flows, integrations around the platforms, and software in Java/Spring Boot and modern frontends. That’s where my interest in software engineering took hold.',
+  'It led me to a Master’s in International Software Systems Science at Otto-Friedrich-Universität Bamberg. My thesis was on memory safety at the operating-system level, which sharpened my low-level systems thinking. Alongside it I built applied projects — an AI-driven customer-support agent and a hybrid rules-plus-model classification system — took part in competitive coding events, and got certified in cloud DevOps.',
+  'Today my focus is backend and distributed systems, cloud-native engineering and observability. I’m based in Bamberg, Germany, and speak German (B1, improving).',
+];
 
 export const featured: Project = {
   name: 'prost-go — Microservices e-commerce platform',
@@ -188,7 +201,6 @@ export const experience: {
   company: string;
   period: string;
   groups: ExperienceGroup[];
-  footnote: string;
 } = {
   company: 'Cognizant Technology Solutions',
   period: '2017 – 2022',
@@ -199,8 +211,16 @@ export const experience: {
         'Built REST-to-SOAP middleware (Node.js) so REST-only clients could drive legacy Cisco CUCM/UCCX SOAP/AXL backends, with unified error handling — removed recurring integration conflicts.',
         'Built a Python, OAuth-secured migration tool moving contact-center configuration from on-prem Cisco UCCX to Webex Contact Center — a multi-hour manual process now runs in minutes.',
         "Designed a Genesys Cloud ↔ Salesforce integration that pops the caller's record for agents and logs calls automatically, removing manual lookup and post-call data entry.",
-        'Built a self-service IVR flow with chained REST calls so users reset PINs by phone — removed a help-desk task.',
-        'Owned L2/L3 production incidents and post-mortems; kept 99.7% uptime and cut average resolution time 35% by turning 30+ incidents into runbooks.',
+        'Owned L2/L3 production incidents and post-mortems; cut average resolution time 35% by turning 30+ incidents into runbooks.',
+      ],
+    },
+    {
+      title: 'Contact center & UC platforms',
+      points: [
+        'Administered enterprise voice infrastructure across 9 Cisco UCCE/CUCM clusters — dial plans, extension mobility and routing for thousands of daily interactions.',
+        'Ran a phased CUCM 11.x → 12.x upgrade across all 9 clusters with Cisco TAC, holding 99.7% uptime through the transition.',
+        'Configured Genesys Cloud CX queues, skill-based routing, wrap-up codes and SIP telephony integrations across two multi-year client engagements.',
+        'Designed inbound, outbound and in-queue IVR flows in Genesys Architect, including a self-service flow where callers reset PINs via chained REST calls.',
       ],
     },
     {
@@ -213,19 +233,23 @@ export const experience: {
       ],
     },
   ],
-  footnote: 'Also administered Genesys Cloud CX and 9 Cisco UCCE/CUCM clusters, including a phased 11.x → 12.x upgrade.',
 };
 
 export const skills: { group: string; items: string[] }[] = [
   { group: 'Backend', items: ['Go', 'Java', 'Spring Boot', 'Node.js', 'Express', 'Python', 'Django REST Framework', 'REST', 'GraphQL', 'SOAP'] },
   { group: 'Frontend', items: ['TypeScript', 'React', 'Vue 3', 'Astro', 'Tailwind CSS', 'Thymeleaf'] },
   { group: 'Data & messaging', items: ['PostgreSQL', 'MySQL', 'MongoDB', 'Redis', 'RabbitMQ', 'JPA/Hibernate', 'Flyway'] },
-  { group: 'Cloud & DevOps', items: ['Docker', 'Kubernetes', 'Terraform', 'Ansible', 'GitHub Actions', 'Jenkins', 'AWS (CodePipeline, CodeBuild)'] },
+  { group: 'Cloud & DevOps', items: ['Docker', 'Kubernetes', 'Terraform', 'Ansible', 'GitHub Actions', 'Jenkins', 'AWS (CodePipeline, CodeBuild)', 'Observability (LGTM)'] },
+  { group: 'Contact center & UC', items: ['Genesys Cloud CX', 'Genesys Architect', 'Cisco UCCE/CUCM', 'SIP/VoIP', 'Contact Center (CCaaS)', 'Salesforce CTI'] },
   { group: 'Testing & practice', items: ['JUnit', 'Mockito', 'Saga/Outbox patterns', 'Prompt-injection testing'] },
-  { group: 'AI', items: ['Gemini API', 'LLM pipelines with deterministic guards', 'Claude Code'] },
+  { group: 'AI', items: ['LLM/AI agents', 'Gemini API', 'LLM pipelines with deterministic guards', 'Claude Code'] },
 ];
 
-export const education: { degree: string; school?: string }[] = [
-  { degree: 'Master in International Software Systems Science', school: 'University of Bamberg' },
+export const education: { degree: string; school?: string; note?: string }[] = [
+  {
+    degree: 'Master in International Software Systems Science',
+    school: 'Otto-Friedrich-Universität Bamberg',
+    note: 'Thesis: memory safety at the operating-system level.',
+  },
   { degree: 'BSc in Computer Science Engineering' },
 ];

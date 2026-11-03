@@ -49,7 +49,7 @@ test('footer shows the copyright line', () => {
 });
 
 test('every content section exists and every in-page anchor resolves', () => {
-  for (const id of ['work', 'experience', 'skills', 'education', 'contact']) {
+  for (const id of ['about', 'work', 'experience', 'skills', 'education', 'contact']) {
     assert.ok(html.includes(`id="${id}"`), id);
   }
   for (const [, id] of html.matchAll(/href="#([^"]+)"/g)) {
@@ -64,7 +64,9 @@ test('page carries the confirmed contact and profile facts', () => {
     'https://deutsch-lehrer-kqw3.vercel.app',
     'Cognizant Technology Solutions',
     'Bamberg, Germany',
-    'University of Bamberg',
+    'Otto-Friedrich-Universität Bamberg',
+    'German (B1',
+    'href="#about"',
   ]) assert.ok(html.includes(s), s);
 });
 
@@ -95,7 +97,6 @@ test('every chip carries a glow colour and glows on hover', () => {
 });
 
 test('header marks the section in view with aria-current and underlines it', () => {
-  const scripts = (html.match(/<script[^>]*>[\s\S]*?<\/script>/g) ?? []).join('\n');
   const spy = (html.match(/<script[^>]*>[\s\S]*?<\/script>/g) ?? []).find((s) => s.includes('aria-current'));
   assert.ok(spy, 'no section-tracking script');
   assert.match(spy, /scroll/);
