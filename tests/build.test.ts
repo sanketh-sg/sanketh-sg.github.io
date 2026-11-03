@@ -70,8 +70,9 @@ test('page carries the confirmed contact and profile facts', () => {
   ]) assert.ok(html.includes(s), s);
 });
 
-test('the h1 is the headline', () => {
-  assert.match(html, /<h1[^>]*>[^<]*I build backends that hold up/);
+test('the h1 is his name, and the old headline is gone', () => {
+  assert.match(html, /<h1[^>]*>\s*Sanketh S G\s*<\/h1>/);
+  assert.doesNotMatch(html, /I build backends/);
 });
 
 test('no broken optional links and no résumé button while resumeUrl is unset', () => {

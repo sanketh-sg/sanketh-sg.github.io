@@ -82,7 +82,6 @@ const email = 'sankethsg2944@gmail.com';
 
 export const profile: {
   name: string;
-  headline: string;
   subline: string;
   location: string;
   email: string;
@@ -91,7 +90,6 @@ export const profile: {
   contactLine: string;
 } = {
   name: 'Sanketh S G',
-  headline: 'I build backends that hold up — and the frontends on top of them.',
   subline: 'Go · Java/Spring Boot · Python · TypeScript — 5 years at Cognizant',
   location: 'Bamberg, Germany',
   email,
