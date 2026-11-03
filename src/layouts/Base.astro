@@ -24,6 +24,7 @@ const url = new URL(Astro.url.pathname, Astro.site);
     <meta property="og:url" content={url} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <ThemeScript />
+    <noscript><style>[data-theme-toggle] { display: none; }</style></noscript>
   </head>
   <body class="bg-stone-50 text-stone-900 antialiased dark:bg-stone-950 dark:text-stone-100 font-sans">
     <slot />

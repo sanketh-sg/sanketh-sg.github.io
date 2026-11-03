@@ -1,9 +1,28 @@
 // Checks the built page. Run `npm run build` first.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { readFileSync } from 'node:fs';
+import { readFileSync, readdirSync } from 'node:fs';
 
 const html = readFileSync('dist/index.html', 'utf8');
+const css = readdirSync('dist/_astro')
+  .filter((f) => f.endsWith('.css'))
+  .map((f) => readFileSync(`dist/_astro/${f}`, 'utf8'))
+  .join('\n');
+
+test('without JS, dark styles follow the system theme', () => {
+  assert.match(css, /prefers-color-scheme:\s*dark/);
+  assert.match(css, /:not\(\[data-theme\]\)/);
+});
+
+test('without JS, the theme toggle is hidden', () => {
+  assert.match(html, /<noscript>\s*<style>[^<]*\[data-theme-toggle\][^<]*display:\s*none/);
+});
+
+test('tapping a link in the phone menu closes it', () => {
+  const scripts = (html.match(/<script[^>]*>[\s\S]*?<\/script>/g) ?? []).join('\n');
+  assert.match(scripts, /details/);
+  assert.match(scripts, /removeAttribute\(['"]open['"]\)|\.open\s*=\s*false/);
+});
 const count = (re: RegExp) => (html.match(re) ?? []).length;
 
 test('page has header, nav, footer landmarks and a single h1', () => {
