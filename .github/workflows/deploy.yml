@@ -19,15 +19,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
-      # Version comes from packageManager in package.json. standalone installs a
-      # self-contained pnpm, so it doesn't depend on the runner's default Node.
-      - uses: pnpm/action-setup@v6
-        with:
-          standalone: true
       - uses: actions/setup-node@v7
         with:
           node-version: 26
-          cache: pnpm
+      # Bootstrap the pnpm version pinned in package.json (packageManager).
+      # npm is used only for this one-off install; the project itself uses pnpm.
+      - run: npm install -g "$(node -p "require('./package.json').packageManager")"
       - run: pnpm install --frozen-lockfile
       - run: pnpm check
       - run: pnpm build
