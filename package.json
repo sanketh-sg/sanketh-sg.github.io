@@ -1,0 +1,19 @@
+{
+  "name": "sanketh-sg-portfolio",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check": "astro check",
+    "test": "node --test \"tests/*.test.ts\""
+  },
+  "dependencies": {
+    "@astrojs/check": "^0.9.12",
+    "@tailwindcss/vite": "^4.3.4",
+    "astro": "^7.4.5",
+    "tailwindcss": "^4.3.4",
+    "typescript": "^6.0.3"
+  }
+}
