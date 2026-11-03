@@ -82,6 +82,10 @@ test('no broken optional links and no résumé button while resumeUrl is unset',
   assert.doesNotMatch(html, /href=""|href="undefined"|>undefined<|Résumé|Resume/);
 });
 
+test('"More projects on GitHub" links to the repositories page', () => {
+  assert.match(html, /<a[^>]*href="https:\/\/github\.com\/sanketh-sg\?tab=repositories"[^>]*>\s*More projects on GitHub/);
+});
+
 test('every image has alt text', () => {
   for (const img of html.match(/<img\s[^>]*>/g) ?? []) {
     assert.match(img, /alt="[^"]+"/, img);

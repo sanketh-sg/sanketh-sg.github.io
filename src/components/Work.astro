@@ -11,7 +11,14 @@ import ProjectCard from './ProjectCard.astro';
     {projects.map((p) => <ProjectCard project={p} />)}
   </div>
 
-  <h3 class="mt-14 text-lg font-semibold tracking-tight">More projects</h3>
+  <h3 class="mt-14 text-lg font-semibold tracking-tight">
+    <a
+      href="https://github.com/sanketh-sg?tab=repositories"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="group inline-flex items-center gap-1 underline decoration-stone-300 underline-offset-4 hover:decoration-stone-900 dark:decoration-stone-600 dark:hover:decoration-stone-100"
+    >More projects on GitHub<span aria-hidden="true" class="motion-safe:transition-transform group-hover:translate-x-0.5">→</span></a>
+  </h3>
   <ul class="mt-4 grid gap-x-8 gap-y-5 md:grid-cols-2">
     {moreProjects.map((p) => (
       <li class="border-t border-stone-200 pt-4 dark:border-stone-800">
