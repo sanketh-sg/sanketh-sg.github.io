@@ -82,6 +82,11 @@ test('every image has alt text', () => {
   }
 });
 
+test('project cards carry their glow colour and an eclipse hover style', () => {
+  assert.equal(count(/<article[^>]*class="[^"]*glow-card[^>]*style="--glow:\s*#[0-9A-Fa-f]{6}/g), 4);
+  assert.match(css, /\.glow-card:(hover|focus-within)[^{]*\{[^}]*box-shadow[^}]*var\(--glow\)/);
+});
+
 test('links opening a new tab carry noopener noreferrer', () => {
   for (const a of html.match(/<a\s[^>]*target="_blank"[^>]*>/g) ?? []) {
     assert.match(a, /rel="noopener noreferrer"/, a);

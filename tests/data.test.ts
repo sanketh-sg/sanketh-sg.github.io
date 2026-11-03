@@ -48,6 +48,12 @@ test('copy uses conservative numbers and has no placeholders', () => {
   assert.doesNotMatch(all, /lorem|\[Your Name\]|TODO|90% coverage|sankethsg2021/i);
 });
 
+test('every card has a glow colour from its core language', () => {
+  const glows = [featured, ...projects].map((p) => p.glow);
+  for (const g of glows) assert.match(g, /^#[0-9a-f]{6}$/i);
+  assert.deepEqual(glows, ['#00ADD8', '#F89820', '#FFD43B', '#3178C6']); // Go, Java, Python, TypeScript
+});
+
 test('skill groups are in the agreed order', () => {
   assert.deepEqual(skills.map((s) => s.group), [
     'Backend', 'Frontend', 'Data & messaging', 'Cloud & DevOps', 'Testing & practice', 'AI',

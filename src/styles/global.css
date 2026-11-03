@@ -19,6 +19,26 @@ html {
   html { scroll-behavior: auto; }
 }
 
+/* Total-eclipse hover: the card stays dark like the moon, with a thin bright
+   ring at its edge and a soft corona fading outward in the language's colour. */
+@media (prefers-reduced-motion: no-preference) {
+  .glow-card {
+    transition: box-shadow 400ms ease, border-color 400ms ease, transform 400ms ease;
+  }
+  .glow-card:hover {
+    transform: translateY(-2px);
+  }
+}
+.glow-card:hover,
+.glow-card:focus-within {
+  border-color: var(--glow);
+  box-shadow:
+    0 0 0 1px var(--glow),
+    0 0 10px 1px color-mix(in srgb, var(--glow) 75%, transparent),
+    0 0 36px 6px color-mix(in srgb, var(--glow) 40%, transparent),
+    0 0 90px 20px color-mix(in srgb, var(--glow) 18%, transparent);
+}
+
 section[id] {
   scroll-margin-top: 5rem;
 }

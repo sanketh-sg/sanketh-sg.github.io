@@ -8,12 +8,22 @@ export type Project = {
   hard: string;
   points: string[];
   tags: string[];
+  /** Hover glow, in the core language's brand colour (hex). */
+  glow: string;
   repo?: string;
   live?: string;
   note?: string;
 };
 
 export type MoreProject = Pick<Project, 'name' | 'tagline' | 'tags' | 'repo'>;
+
+// Brand colours used for the card hover glow.
+const lang = {
+  go: '#00ADD8',
+  java: '#F89820',
+  python: '#FFD43B',
+  typescript: '#3178C6',
+};
 export type ExperienceGroup = { title: string; points: string[] };
 
 const gh = (repo: string) => `https://github.com/sanketh-sg/${repo}`;
@@ -54,6 +64,7 @@ export const featured: Project = {
     'JWT authentication in a dedicated Users service.',
   ],
   tags: ['Go', 'GraphQL', 'RabbitMQ', 'PostgreSQL', 'Redis', 'Docker Compose', 'Vue 3'],
+  glow: lang.go,
   repo: gh('prost-go'),
   note: 'Vue frontend in progress.',
 };
@@ -69,6 +80,7 @@ export const projects: Project[] = [
       '11 test classes covering auth, checkout edge cases and sessions.',
     ],
     tags: ['Spring Boot 3.5', 'Spring Security', 'JPA', 'PostgreSQL', 'Flyway', 'Thymeleaf', 'Tailwind'],
+    glow: lang.java,
     repo: gh('prost'),
   },
   {
@@ -81,6 +93,7 @@ export const projects: Project[] = [
       '90% holdout accuracy on payment method and affordability.',
     ],
     tags: ['Python', 'Gemini', 'LLM pipelines'],
+    glow: lang.python,
     repo: gh('buy-or-wait-financial-decision-agent'),
   },
   {
@@ -93,6 +106,7 @@ export const projects: Project[] = [
       'AI provider behind one interface, so models can be swapped.',
     ],
     tags: ['TypeScript', 'Next.js', 'React', 'Gemini', 'Upstash Redis'],
+    glow: lang.typescript,
     repo: gh('deutsch-lehrer'),
     live: 'https://deutsch-lehrer-kqw3.vercel.app',
   },
