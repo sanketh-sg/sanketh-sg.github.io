@@ -43,3 +43,32 @@ const link =
     </div>
   </div>
 </header>
+
+<script is:inline>
+  // Underline the header link for the section in view (aria-current="location").
+  // Runs on DOMContentLoaded: this script sits above the sections it tracks.
+  document.addEventListener('DOMContentLoaded', function () {
+    var links = Array.prototype.slice.call(document.querySelectorAll('header nav a[href^="#"]'));
+    var ids = links.map(function (a) { return a.getAttribute('href').slice(1); })
+      .filter(function (id, i, all) { return all.indexOf(id) === i; });
+    var sections = ids.map(function (id) { return document.getElementById(id); }).filter(Boolean);
+    if (!sections.length) return;
+
+    function update() {
+      var line = 96; // just below the sticky header
+      var current = null;
+      sections.forEach(function (s) { if (s.getBoundingClientRect().top <= line) current = s.id; });
+      // The last section is short, so treat "scrolled to the bottom" as being in it.
+      if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2) {
+        current = sections[sections.length - 1].id;
+      }
+      links.forEach(function (a) {
+        if (current && a.getAttribute('href') === '#' + current) a.setAttribute('aria-current', 'location');
+        else a.removeAttribute('aria-current');
+      });
+    }
+
+    window.addEventListener('scroll', update, { passive: true });
+    update();
+  });
+</script>

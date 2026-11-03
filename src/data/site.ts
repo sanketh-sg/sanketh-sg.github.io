@@ -17,12 +17,58 @@ export type Project = {
 
 export type MoreProject = Pick<Project, 'name' | 'tagline' | 'tags' | 'repo'>;
 
-// Brand colours used for the card hover glow.
+// Brand colours for the hover glow on cards and skill chips.
+const brand: Record<string, string> = {
+  Go: '#00ADD8',
+  Java: '#F89820',
+  Python: '#FFD43B',
+  TypeScript: '#3178C6',
+  JavaScript: '#F7DF1E',
+  HTML: '#E34F26',
+  'Spring Boot': '#6DB33F',
+  'Spring Boot 3.5': '#6DB33F',
+  'Spring Security': '#6DB33F',
+  'Node.js': '#5FA04E',
+  'Django REST Framework': '#44B78B',
+  GraphQL: '#E10098',
+  React: '#61DAFB',
+  'Vue 3': '#42B883',
+  Astro: '#FF5D01',
+  'Tailwind CSS': '#06B6D4',
+  Tailwind: '#06B6D4',
+  Thymeleaf: '#5FB04A',
+  PostgreSQL: '#4169E1',
+  MySQL: '#4479A1',
+  MongoDB: '#47A248',
+  Redis: '#DC382D',
+  'Upstash Redis': '#00E9A3',
+  RabbitMQ: '#FF6600',
+  'JPA/Hibernate': '#BCAE79',
+  JPA: '#BCAE79',
+  Flyway: '#CC0200',
+  Docker: '#2496ED',
+  'Docker Compose': '#2496ED',
+  Kubernetes: '#326CE5',
+  Terraform: '#844FBA',
+  Ansible: '#EE0000',
+  'GitHub Actions': '#2088FF',
+  Jenkins: '#D24939',
+  'AWS (CodePipeline, CodeBuild)': '#FF9900',
+  JUnit: '#25A162',
+  Mockito: '#78A641',
+  Gemini: '#8E75FF',
+  'Gemini API': '#8E75FF',
+  'Claude Code': '#D97757',
+};
+const neutral = '#A8A29E'; // stone-400, for skills without a brand colour
+
+export const glowFor = (name: string): string => brand[name] ?? neutral;
+
 const lang = {
-  go: '#00ADD8',
-  java: '#F89820',
-  python: '#FFD43B',
-  typescript: '#3178C6',
+  go: brand.Go,
+  java: brand.Java,
+  python: brand.Python,
+  typescript: brand.TypeScript,
 };
 export type ExperienceGroup = { title: string; points: string[] };
 

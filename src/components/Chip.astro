@@ -1,8 +1,13 @@
 ---
+import { glowFor } from '../data/site';
+
 interface Props { label: string }
 const { label } = Astro.props;
 ---
 
-<li class="rounded-md border border-stone-200 bg-white px-2.5 py-1 text-xs font-medium break-words text-stone-700 dark:border-stone-800 dark:bg-stone-900 dark:text-stone-300">
+<li
+  class="chip rounded-md border border-stone-200 bg-white px-2.5 py-1 text-xs font-medium break-words text-stone-700 dark:border-stone-800 dark:bg-stone-900 dark:text-stone-300"
+  style={`--glow: ${glowFor(label)}`}
+>
   {label}
 </li>

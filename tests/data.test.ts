@@ -54,6 +54,18 @@ test('every card has a glow colour from its core language', () => {
   assert.deepEqual(glows, ['#00ADD8', '#F89820', '#FFD43B', '#3178C6']); // Go, Java, Python, TypeScript
 });
 
+test('skills glow in their brand colour, unknown ones in neutral stone', () => {
+  assert.equal(site.glowFor('Go'), '#00ADD8');
+  assert.equal(site.glowFor('PostgreSQL'), '#4169E1');
+  assert.equal(site.glowFor('RabbitMQ'), '#FF6600');
+  assert.equal(site.glowFor('Something new'), '#A8A29E');
+});
+
+test('every skill and tag has a valid glow colour', () => {
+  const names = [...skills.flatMap((s) => s.items), ...[featured, ...projects].flatMap((p) => p.tags)];
+  for (const n of names) assert.match(site.glowFor(n), /^#[0-9A-F]{6}$/, n);
+});
+
 test('skill groups are in the agreed order', () => {
   assert.deepEqual(skills.map((s) => s.group), [
     'Backend', 'Frontend', 'Data & messaging', 'Cloud & DevOps', 'Testing & practice', 'AI',

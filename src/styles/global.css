@@ -39,6 +39,27 @@ html {
     0 0 90px 20px color-mix(in srgb, var(--glow) 18%, transparent);
 }
 
+/* Same eclipse glow, scaled down for skill chips. */
+@media (prefers-reduced-motion: no-preference) {
+  .chip {
+    transition: box-shadow 300ms ease, border-color 300ms ease, color 300ms ease;
+  }
+}
+.chip:hover {
+  border-color: var(--glow);
+  box-shadow:
+    0 0 0 1px var(--glow),
+    0 0 6px 1px color-mix(in srgb, var(--glow) 70%, transparent),
+    0 0 18px 3px color-mix(in srgb, var(--glow) 35%, transparent);
+}
+
+/* Header link for the section currently in view (set by Header's script). */
+header nav a[aria-current='location'] {
+  text-decoration-line: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 6px;
+}
+
 section[id] {
   scroll-margin-top: 5rem;
 }

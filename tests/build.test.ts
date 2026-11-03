@@ -87,6 +87,23 @@ test('project cards carry their glow colour and an eclipse hover style', () => {
   assert.match(css, /\.glow-card:(hover|focus-within)[^{]*\{[^}]*box-shadow[^}]*var\(--glow\)/);
 });
 
+test('every chip carries a glow colour and glows on hover', () => {
+  const chips = count(/<li[^>]*class="[^"]*\bchip\b/g);
+  assert.ok(chips > 40, `only ${chips} chips`);
+  assert.equal(count(/<li[^>]*class="[^"]*\bchip\b[^>]*style="--glow:\s*#[0-9A-F]{6}"/g), chips);
+  assert.match(css, /\.chip:hover[^{]*\{[^}]*box-shadow[^}]*var\(--glow\)/);
+});
+
+test('header marks the section in view with aria-current and underlines it', () => {
+  const scripts = (html.match(/<script[^>]*>[\s\S]*?<\/script>/g) ?? []).join('\n');
+  const spy = (html.match(/<script[^>]*>[\s\S]*?<\/script>/g) ?? []).find((s) => s.includes('aria-current'));
+  assert.ok(spy, 'no section-tracking script');
+  assert.match(spy, /scroll/);
+  // It sits in the header, above the sections, so it must wait for the DOM.
+  assert.match(spy, /DOMContentLoaded/);
+  assert.match(css, /\[aria-current[^\]]*\][^{]*\{[^}]*text-decoration-line:\s*underline/);
+});
+
 test('links opening a new tab carry noopener noreferrer', () => {
   for (const a of html.match(/<a\s[^>]*target="_blank"[^>]*>/g) ?? []) {
     assert.match(a, /rel="noopener noreferrer"/, a);
