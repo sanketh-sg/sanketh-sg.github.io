@@ -73,14 +73,13 @@ const lang = {
   typescript: brand.TypeScript,
 };
 export type ExperienceGroup = { title: string; points: string[] };
-export type CaseStudy = { name: string; problem: string; built: string; owned: string; delivery: string };
 
 const gh = (repo: string) => `https://github.com/sanketh-sg/${repo}`;
 const email = 'sankethsg2944@gmail.com';
 
 export const profile: {
   name: string;
-  subline: string;
+  subline: string[];
   location: string;
   email: string;
   links: Link[];
@@ -88,7 +87,11 @@ export const profile: {
   contactLine: string;
 } = {
   name: 'Sanketh S G',
-  subline: 'Backend and Contact Center Engineer · Java/Spring Boot, Go, Python, TypeScript · 5 years at Cognizant',
+  subline: [
+    'Backend and Contact Center Engineer · Java/Spring Boot, Go, Python, TypeScript',
+    '5 years at Cognizant',
+    'Currently living in Bamberg, Germany',
+  ],
   location: 'Bamberg, Germany',
   email,
   links: [
@@ -102,9 +105,10 @@ export const profile: {
 
 export const about: string[] = [
   'I’m a software engineer with a foundation in enterprise communication systems, and I work where the two meet.',
-  'I started in contact center and telephony engineering at Cognizant (2017 to 2022), on Genesys Cloud CX and Cisco UCCE/CUCM. Alongside supporting these platforms, including a nine-cluster environment and an 11.x to 12.x upgrade across all nine clusters, I got into development: IVR call flows, integrations around the platforms, and software in Java/Spring Boot and modern frontends. That’s where my interest in software engineering took hold.',
-  'It led me to a Master’s in International Software Systems Science at Otto-Friedrich-Universität Bamberg. My thesis was on enabling capabilities in Unix-like operating systems, which sharpened my low-level systems thinking. Alongside it I built applied projects, including an AI-driven customer-support agent and a hybrid rules-plus-model classification system. I also took part in competitive coding events from HackerRank and WeMakeDevs, and got certified in cloud DevOps.',
-  'Today my focus is backend and distributed systems, cloud-native engineering and observability. I’m based in Bamberg, Germany, and speak German (B1, improving).',
+  'I started in contact-center and telephony engineering at Cognizant (2017-2022), working on Genesys Cloud CX and Cisco UCCE/CUCM. I ran these platforms, including a 9-cluster environment and its 11.x to 12.x upgrade, supported a phased user migration from Jabber to Webex, and contributed to a team project moving a back-office phone system from Avaya to Microsoft Teams Phone, where I rebuilt call handling such as call queues and auto attendants and helped troubleshoot issues after cutover. Alongside the operations work, I built business-critical software around these platforms. I took a self-service application from idea to production that let business teams change what agents see on their desktops, and I took ownership of a portal that enabled about 12,000 agents to work from home. That’s where my interest in software engineering took hold, and I wanted to go deeper than the job allowed.',
+  'That growing interest in software led me to a Master’s in International Software Systems Science at Otto-Friedrich-Universität Bamberg. My thesis was on memory safety at the operating-system level, which sharpened my low-level systems thinking. Alongside it I built applied projects, including an AI-driven customer-support agent and a hybrid rules-plus-model classification system, and took part in competitive coding events. I’m also certified in cloud DevOps.',
+  'I follow my curiosity, and my interests have evolved with the work. Today I’m focused on backend and distributed systems, cloud-native engineering, and observability. I also enjoy the real-time communications side, with years of hands-on experience in contact center, UC, and CCaaS platforms. I’m looking for fullstack, backend, platform, or CCaaS engineering roles. Based in Bamberg, Germany (German B1, improving).',
+  'Core skills: Java · Spring Boot · Go · TypeScript · REST APIs · CI/CD & Cloud-native · Observability (LGTM) · SIP/VoIP · Genesys Cloud CX · Cisco UCCE/CUCM · Microsoft Teams Phone · Direct Routing · Contact Center (CCaaS) · LLM/AI Agents',
 ];
 
 export const featured: Project = {
@@ -169,10 +173,10 @@ export const projects: Project[] = [
 
 export const moreProjects: MoreProject[] = [
   {
-    name: 'cap-ramp',
-    tagline: 'Enterprise IT service-request and asset-management platform.',
-    tags: ['Vue'],
-    repo: gh('cap-ramp'),
+    name: 'Full-stack coursework (University of Helsinki)',
+    tagline: 'React, Node, Express, MongoDB and GraphQL, including a phonebook application deployed on Render, with tests and linting.',
+    tags: ['React', 'Node.js', 'Express', 'MongoDB', 'GraphQL'],
+    repo: gh('fullstack-uni-helsinki'),
   },
   {
     name: 'Multimodal message router',
@@ -196,61 +200,48 @@ export const moreProjects: MoreProject[] = [
 
 export const experience: {
   company: string;
+  role: string;
   period: string;
   groups: ExperienceGroup[];
 } = {
   company: 'Cognizant Technology Solutions',
-  period: '2017 to 2022',
+  role: 'Senior Developer - Unified Communications · Bengaluru, India',
+  period: 'Nov 2017 to Sep 2022',
   groups: [
     {
-      title: 'Backend & integration',
+      title: 'Applications & delivery',
       points: [
-        'Built REST-to-SOAP middleware (Node.js) so REST-only clients could drive legacy Cisco CUCM/UCCX SOAP/AXL backends, with unified error handling, which removed recurring integration conflicts.',
-        'Built a Python, OAuth-secured migration tool moving contact center configuration from on-prem Cisco UCCX to Webex Contact Center.',
-        "Designed a Genesys Cloud ↔ Salesforce integration that pops the caller's record for agents and logs calls automatically, removing manual lookup and post-call data entry.",
-        'Handled L2 and L3 incidents on Cisco UC and Genesys Cloud platforms, working vendor and client escalations through to resolution.',
-      ],
-    },
-    {
-      title: 'Contact center & UC platforms',
-      points: [
-        'Supported a cluster-by-cluster 11.x to 12.x upgrade across all nine clusters: pre-upgrade backups, testing after each phase, monitoring, and Cisco TAC cases followed through to resolution.',
-        'Supported the migration of users from Jabber to Webex, starting with a pilot and moving further users across clusters in phases.',
-        'Contributed as a junior engineer to a team project migrating a back-office phone system from Avaya to Microsoft Teams Phone: documented existing call handling, rebuilt call queues, auto attendants, hunt groups and holiday schedules in Teams, and helped troubleshoot post-cutover issues.',
-        'Configured Genesys Cloud CX queues, skill-based routing, wrap-up codes and SIP telephony integrations.',
-        'Designed inbound, outbound and in-queue IVR flows in Genesys Architect, including a self-service flow where callers reset PINs via chained REST calls.',
-      ],
-    },
-    {
-      title: 'Full-stack & delivery',
-      points: [
-        'Built a full-stack self-service application (Java backend, React frontend) that lets business teams schedule banner messages for contact center agents, replacing manual database updates and email requests. Users select agent teams and schedule in UTC, with input validation in the form. Taken from idea to production through lab, non-production and production with client approval.',
-        'Took ownership of a Spring Boot and React web portal that gave about 12,000 agents working from home their telephony numbers, in a 40-day project with a team of more than ten people.',
-        'Ran both applications as two instances behind a load balancer with rolling deployments and smoke tests.',
-        'Wrote JUnit unit tests, database integration tests, API tests, Jest frontend tests and Playwright end-to-end tests, working toward an 85% coverage target.',
+        'Built a full-stack self-service application (Java backend, React frontend) that lets business teams schedule banner messages for contact center agents on their Finesse desktops, replacing manual database updates and email requests. Users search and select agent teams, schedule in UTC, and get input validation in the form; banners appear and disappear automatically.',
+        'Took the banner application from idea to production: pitched it to my manager, agreed requirements with the client, delivered it in two-week agile sprints with Jira through lab, non-production and production with client approval, and trained the requesting teams.',
+        'Took ownership of a Spring Boot and React web portal that gave about 12,000 agents working from home their telephony numbers, in a 40-day project with a team of more than ten people. It exposes three REST endpoints and ships as one deployable jar.',
+        'Ran both applications as two instances behind a load balancer, with rolling deployments, smoke tests after each release, and monitoring of availability and request errors.',
         'Built and owned a GitHub Actions CI/CD pipeline: build, automated tests, SonarQube static analysis, OWASP dependency check, versioned artifacts in AWS CodeArtifact, automated deployment through lab and non-production, manual approval before production.',
+        'Wrote JUnit unit tests, database integration tests, API tests, Jest frontend tests and Playwright end-to-end tests, working toward an 85% coverage target.',
         'Mentored four junior engineers and ran standups and sprint planning.',
+      ],
+    },
+    {
+      title: 'Genesys Cloud CX & integrations',
+      points: [
+        'Configured and administered Genesys Cloud CX queues, skills-based routing, wrap-up codes and SIP telephony integrations for enterprise clients in a hybrid contact center.',
+        'Designed inbound, outbound and in-queue IVR flows in Genesys Architect, connecting routing logic to business requirements and REST-based services.',
+        'Built a Genesys Cloud CX to Salesforce screen-pop and call-logging integration through Architect flows, so agents no longer searched for accounts or entered call data by hand.',
+        'Built REST-to-SOAP middleware (Node.js, and also as a Django REST Framework layer) connecting Cisco UCCX REST APIs with CUCM SOAP and AXL services, so routine telephony administration needed less manual work.',
+      ],
+    },
+    {
+      title: 'Cisco & Microsoft UC platforms',
+      points: [
+        'Administered a nine-cluster Cisco UCCE and CUCM environment for a 24/7 contact center operation.',
+        'Supported a cluster-by-cluster 11.x to 12.x upgrade across all nine clusters: pre-upgrade backups, testing after each phase, monitoring, and Cisco TAC cases followed through to resolution.',
+        'Handled L2 and L3 incidents on Cisco UC and Genesys Cloud platforms, working vendor and client escalations through to resolution.',
+        'Administered Oracle session border controllers (call-blocking rules and call routing for new office builds), set up and troubleshot SIP trunks for office deployments, and wrote IVR call flows on Cisco UCCX.',
+        'Supported the migration of users from Jabber to Webex alongside a senior engineer, starting with a pilot and moving further users across clusters in phases: provisioned users and service profiles and gave post-deployment support.',
+        'Contributed as a junior engineer to a team project migrating a back-office phone system from Avaya to Microsoft Teams Phone: documented existing call handling, rebuilt call queues, auto attendants, hunt groups and holiday schedules in Teams, and helped troubleshoot post-cutover issues with Microsoft engineers.',
       ],
     },
   ],
 };
-
-export const caseStudies: CaseStudy[] = [
-  {
-    name: 'Work-from-home agent telephony portal',
-    problem: 'About 12,000 agents working from home needed their telephony numbers.',
-    built: 'A Spring Boot and React web portal that gave agents their telephony numbers.',
-    owned: 'I took ownership of the portal, working in a team of more than ten people.',
-    delivery: 'A 40-day project. Ran as two instances behind a load balancer with rolling deployments and smoke tests.',
-  },
-  {
-    name: 'Agent banner message scheduler',
-    problem: 'Business teams scheduled banner messages for contact center agents through manual database updates and email requests.',
-    built: 'A full-stack self-service application (Java backend, React frontend). Users select agent teams and schedule in UTC, with input validation in the form.',
-    owned: 'I built the application and took it from idea to production.',
-    delivery: 'Moved through lab, non-production and production with client approval. Ran as two instances behind a load balancer with rolling deployments and smoke tests.',
-  },
-];
 
 export const certifications: { name: string; period: string }[] = [
   { name: 'Oracle Cloud Infrastructure (OCI) DevOps Professional', period: '2025' },

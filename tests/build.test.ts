@@ -48,7 +48,7 @@ test('footer shows the copyright line', () => {
 });
 
 test('every content section exists and every in-page anchor resolves', () => {
-  for (const id of ['about', 'work', 'experience', 'case-studies', 'skills', 'education', 'contact']) {
+  for (const id of ['about', 'work', 'experience', 'skills', 'education', 'contact']) {
     assert.ok(html.includes(`id="${id}"`), id);
   }
   for (const [, id] of html.matchAll(/href="#([^"]+)"/g)) {
@@ -64,7 +64,7 @@ test('page carries the confirmed contact and profile facts', () => {
     'Cognizant Technology Solutions',
     'Bamberg, Germany',
     'Otto-Friedrich-Universität Bamberg',
-    'German (B1',
+    'German B1',
     'Oct 2022 – Mar 2026',
     'Acharya Institute of Technology',
     'Mar 2013 – Aug 2017',

@@ -17,7 +17,7 @@ const link =
     <a href="#top" class="text-xl font-bold tracking-tight sm:text-2xl">{profile.name}</a>
 
     <!-- One nav: a scrollable second row on phones, inline on wider screens. -->
-    <nav aria-label="Sections" class="order-last -mx-2 w-full overflow-x-auto py-2 sm:order-none sm:mx-0 sm:ml-auto sm:w-auto sm:py-0">
+    <nav aria-label="Sections" class="order-last -mx-2 w-full overflow-x-auto overflow-y-hidden py-2 sm:order-none sm:mx-0 sm:ml-auto sm:w-auto sm:shrink-0 sm:overflow-visible sm:py-0">
       <ul class="flex gap-1 text-sm whitespace-nowrap">
         {nav.map((n) => <li><a class={link} href={n.href}>{n.label}</a></li>)}
       </ul>

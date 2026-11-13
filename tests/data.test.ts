@@ -36,17 +36,16 @@ test('message router links its repo', () => {
 
 test('experience is one Cognizant entry with three groups, platforms included', () => {
   assert.equal(experience.company, 'Cognizant Technology Solutions');
-  assert.equal(experience.period, '2017 to 2022');
+  assert.equal(experience.period, 'Nov 2017 to Sep 2022');
   assert.deepEqual(experience.groups.map((g) => g.title), [
-    'Backend & integration', 'Contact center & UC platforms', 'Full-stack & delivery',
+    'Applications & delivery', 'Genesys Cloud CX & integrations', 'Cisco & Microsoft UC platforms',
   ]);
 });
 
 test('about tells the story from Cognizant to Bamberg to today', () => {
   const text = site.about.join(' ');
   assert.ok(site.about.length >= 3);
-  assert.doesNotMatch(text, /memory safety/i);
-  for (const s of ['Cognizant', 'Genesys Cloud CX', 'enabling capabilities in Unix-like operating systems', 'observability', 'German (B1']) {
+  for (const s of ['Cognizant', 'Genesys Cloud CX', 'memory safety', 'observability', 'German B1', 'Core skills:']) {
     assert.ok(text.includes(s), s);
   }
 });
@@ -100,8 +99,16 @@ test('education lists the Bamberg master with its thesis, and the BSc', () => {
   assert.equal(education[1].period, 'Mar 2013 – Aug 2017');
 });
 
-test('certifications and case studies are present', () => {
+test('certifications are listed and case studies are gone', () => {
   assert.deepEqual(site.certifications.map((c) => c.period), ['2025', '2019 to 2021']);
-  assert.equal(site.caseStudies.length, 2);
-  for (const c of site.caseStudies) for (const v of Object.values(c)) assert.ok(v.length > 0);
+  assert.equal('caseStudies' in site, false);
+});
+
+test('intro reads as three lines and cap-ramp is replaced', () => {
+  assert.deepEqual(profile.subline, [
+    'Backend and Contact Center Engineer · Java/Spring Boot, Go, Python, TypeScript',
+    '5 years at Cognizant',
+    'Currently living in Bamberg, Germany',
+  ]);
+  assert.ok(!moreProjects.some((p) => p.repo === gh('cap-ramp')));
 });
