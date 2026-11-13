@@ -205,7 +205,7 @@ export const experience: {
   groups: ExperienceGroup[];
 } = {
   company: 'Cognizant Technology Solutions',
-  role: 'Senior Developer - Unified Communications · Bengaluru, India',
+  role: 'Senior Developer · Bengaluru, India',
   period: 'Nov 2017 to Sep 2022',
   groups: [
     {
