@@ -1,0 +1,28 @@
+---
+import { caseStudies } from '../data/site';
+const rows = [
+  ['The problem', 'problem'],
+  ['What I built', 'built'],
+  ['What I owned', 'owned'],
+  ['How it was delivered', 'delivery'],
+] as const;
+---
+
+<section id="case-studies" class="mx-auto max-w-5xl px-4 py-16 sm:px-6">
+  <h2 class="text-sm font-semibold tracking-widest text-stone-500 uppercase dark:text-stone-400">Case studies</h2>
+  <div class="mt-6 space-y-4">
+    {caseStudies.map((c) => (
+      <details class="rounded-xl border border-stone-200 bg-white p-6 dark:border-stone-800 dark:bg-stone-900">
+        <summary class="cursor-pointer text-lg font-semibold tracking-tight">{c.name}</summary>
+        <dl class="mt-4 space-y-3 text-sm">
+          {rows.map(([label, key]) => (
+            <div>
+              <dt class="font-medium">{label}</dt>
+              <dd class="mt-1 text-stone-700 dark:text-stone-300">{c[key]}</dd>
+            </div>
+          ))}
+        </dl>
+      </details>
+    ))}
+  </div>
+</section>

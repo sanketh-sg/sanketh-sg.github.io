@@ -29,15 +29,14 @@ test('every defined link is absolute and non-empty', () => {
   for (const h of hrefs) assert.match(h, /^(https:\/\/|mailto:)\S+$/, h);
 });
 
-test('message router has no repo link', () => {
+test('message router links its repo', () => {
   const router = moreProjects.find((p) => /router/i.test(p.name));
-  assert.ok(router);
-  assert.equal(router.repo, undefined);
+  assert.equal(router?.repo, gh('message-notification-router'));
 });
 
 test('experience is one Cognizant entry with three groups, platforms included', () => {
   assert.equal(experience.company, 'Cognizant Technology Solutions');
-  assert.equal(experience.period, '2017 – 2022');
+  assert.equal(experience.period, '2017 to 2022');
   assert.deepEqual(experience.groups.map((g) => g.title), [
     'Backend & integration', 'Contact center & UC platforms', 'Full-stack & delivery',
   ]);
@@ -53,7 +52,7 @@ test('about tells the story from Cognizant to Bamberg to today', () => {
 });
 
 test('contact line names every kind of role he is open to', () => {
-  for (const s of ['full-stack', 'backend', 'platform', 'contact center', 'UC', 'CCaaS']) {
+  for (const s of ['backend', 'platform', 'fullstack', 'UC', 'contact center', 'Bamberg, Germany']) {
     assert.ok(profile.contactLine.includes(s), s);
   }
 });
@@ -61,8 +60,7 @@ test('contact line names every kind of role he is open to', () => {
 test('copy uses conservative numbers and has no placeholders', () => {
   const all = JSON.stringify(site);
   assert.ok(all.includes('85%'));
-  assert.ok(all.includes('99.7%'));
-  assert.doesNotMatch(all, /lorem|\[Your Name\]|TODO|90% coverage|sankethsg2021/i);
+  assert.doesNotMatch(all, /lorem|\[Your Name\]|TODO|90% coverage|sankethsg2021|99\.7|35%|Jenkins|Unit4|Geico|grom|—/i);
 });
 
 test('every card has a glow colour from its core language', () => {
@@ -99,5 +97,11 @@ test('education lists the Bamberg master with its thesis, and the BSc', () => {
   assert.equal(education[0].note, 'Thesis: Enabling capabilities in Unix-like operating systems.');
   assert.equal(education[0].period, 'Oct 2022 – Mar 2026');
   assert.equal(education[1].school, 'Acharya Institute of Technology');
-  assert.equal(education[1].period, '2012 – 2016');
+  assert.equal(education[1].period, 'Mar 2013 – Aug 2017');
+});
+
+test('certifications and case studies are present', () => {
+  assert.deepEqual(site.certifications.map((c) => c.period), ['2025', '2019 to 2021']);
+  assert.equal(site.caseStudies.length, 2);
+  for (const c of site.caseStudies) for (const v of Object.values(c)) assert.ok(v.length > 0);
 });

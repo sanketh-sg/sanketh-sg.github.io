@@ -23,7 +23,7 @@ import { profile } from '../data/site';
       </li>
     ))}
     {profile.resumeUrl && (
-      <li><a href={profile.resumeUrl} class="inline-block rounded-lg border border-stone-300 px-4 py-2 text-sm font-medium dark:border-stone-700">Résumé (PDF)</a></li>
+      <li><a href={profile.resumeUrl} class="inline-block rounded-lg border border-stone-300 px-4 py-2 text-sm font-medium dark:border-stone-700" download>Download CV</a></li>
     )}
   </ul>
 </section>

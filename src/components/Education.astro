@@ -1,5 +1,5 @@
 ---
-import { education } from '../data/site';
+import { education, certifications } from '../data/site';
 ---
 
 <section id="education" class="mx-auto max-w-5xl px-4 py-16 sm:px-6">
@@ -13,6 +13,16 @@ import { education } from '../data/site';
         </div>
         {e.school && <p class="text-sm text-stone-600 dark:text-stone-400">{e.school}</p>}
         {e.note && <p class="text-sm text-stone-500 dark:text-stone-400">{e.note}</p>}
+      </li>
+    ))}
+  </ul>
+
+  <h2 class="mt-12 text-sm font-semibold tracking-widest text-stone-500 uppercase dark:text-stone-400">Certifications</h2>
+  <ul class="mt-6 space-y-3">
+    {certifications.map((c) => (
+      <li class="flex flex-wrap items-baseline justify-between gap-x-4">
+        <p class="font-medium">{c.name}</p>
+        <p class="text-sm text-stone-500 dark:text-stone-400">{c.period}</p>
       </li>
     ))}
   </ul>

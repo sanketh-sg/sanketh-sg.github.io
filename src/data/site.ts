@@ -33,12 +33,10 @@ const brand: Record<string, string> = {
   GraphQL: '#E10098',
   React: '#61DAFB',
   'Vue 3': '#42B883',
-  Astro: '#FF5D01',
   'Tailwind CSS': '#06B6D4',
   Tailwind: '#06B6D4',
   Thymeleaf: '#5FB04A',
   PostgreSQL: '#4169E1',
-  MySQL: '#4479A1',
   MongoDB: '#47A248',
   Redis: '#DC382D',
   'Upstash Redis': '#00E9A3',
@@ -48,12 +46,8 @@ const brand: Record<string, string> = {
   Flyway: '#CC0200',
   Docker: '#2496ED',
   'Docker Compose': '#2496ED',
-  Kubernetes: '#326CE5',
-  Terraform: '#844FBA',
-  Ansible: '#EE0000',
   'GitHub Actions': '#2088FF',
-  Jenkins: '#D24939',
-  'AWS (CodePipeline, CodeBuild)': '#FF9900',
+  SonarQube: '#4E9BCD',
   JUnit: '#25A162',
   Mockito: '#78A641',
   Gemini: '#8E75FF',
@@ -64,6 +58,9 @@ const brand: Record<string, string> = {
   'Genesys Architect': '#FF4F1F',
   'Cisco UCCE/CUCM': '#049FD9',
   'Salesforce CTI': '#00A1E0',
+  Webex: '#07C1E4',
+  'Cisco Finesse': '#049FD9',
+  'Microsoft Teams Phone & Direct Routing': '#6264A7',
 };
 const neutral = '#A8A29E'; // stone-400, for skills without a brand colour
 
@@ -76,6 +73,7 @@ const lang = {
   typescript: brand.TypeScript,
 };
 export type ExperienceGroup = { title: string; points: string[] };
+export type CaseStudy = { name: string; problem: string; built: string; owned: string; delivery: string };
 
 const gh = (repo: string) => `https://github.com/sanketh-sg/${repo}`;
 const email = 'sankethsg2944@gmail.com';
@@ -90,7 +88,7 @@ export const profile: {
   contactLine: string;
 } = {
   name: 'Sanketh S G',
-  subline: 'Go · Java/Spring Boot · Python · TypeScript — 5 years at Cognizant',
+  subline: 'Backend and Contact Center Engineer · Java/Spring Boot, Go, Python, TypeScript · 5 years at Cognizant',
   location: 'Bamberg, Germany',
   email,
   links: [
@@ -99,18 +97,18 @@ export const profile: {
     { label: 'Email', href: `mailto:${email}` },
   ],
   contactLine:
-    'Open to full-stack, backend and platform roles and to contact center, UC and CCaaS engineering.',
+    'Open to backend, platform and fullstack roles, and to UC and contact center engineering roles. Based in Bamberg, Germany.',
 };
 
 export const about: string[] = [
   'I’m a software engineer with a foundation in enterprise communication systems, and I work where the two meet.',
-  'I started in contact-center and telephony engineering at Cognizant (2017–2022), on Genesys Cloud CX and Cisco UCCE/CUCM. Alongside running these platforms including a 9-cluster environment and an 11.x → 12.x upgrade across all nine. I got into development: IVR call flows, integrations around the platforms, and software in Java/Spring Boot and modern frontends. That’s where my interest in software engineering took hold.',
-  'It led me to a Master’s in International Software Systems Science at Otto-Friedrich-Universität Bamberg. My thesis was on enabling capabilities in Unix-like operating systems, which sharpened my low-level systems thinking. Alongside it I built applied projects — an AI-driven customer-support agent and a hybrid rules-plus-model classification system took part in competitive coding events grom HackerRank, WeMakeDevs, and got certified in cloud DevOps.',
+  'I started in contact center and telephony engineering at Cognizant (2017 to 2022), on Genesys Cloud CX and Cisco UCCE/CUCM. Alongside supporting these platforms, including a nine-cluster environment and an 11.x to 12.x upgrade across all nine clusters, I got into development: IVR call flows, integrations around the platforms, and software in Java/Spring Boot and modern frontends. That’s where my interest in software engineering took hold.',
+  'It led me to a Master’s in International Software Systems Science at Otto-Friedrich-Universität Bamberg. My thesis was on enabling capabilities in Unix-like operating systems, which sharpened my low-level systems thinking. Alongside it I built applied projects, including an AI-driven customer-support agent and a hybrid rules-plus-model classification system. I also took part in competitive coding events from HackerRank and WeMakeDevs, and got certified in cloud DevOps.',
   'Today my focus is backend and distributed systems, cloud-native engineering and observability. I’m based in Bamberg, Germany, and speak German (B1, improving).',
 ];
 
 export const featured: Project = {
-  name: 'prost-go — Microservices e-commerce platform',
+  name: 'prost-go: Microservices e-commerce platform',
   tagline: 'Five Go services behind a GraphQL gateway, talking over RabbitMQ.',
   hard: 'Distributed checkout without a distributed transaction: saga orchestration with compensating actions that release reserved stock when a step fails.',
   points: [
@@ -128,7 +126,7 @@ export const featured: Project = {
 
 export const projects: Project[] = [
   {
-    name: 'prost — Spring Boot e-commerce',
+    name: 'prost: Spring Boot e-commerce',
     tagline: 'A server-rendered beverage shop with real checkout rules.',
     hard: 'No overselling under concurrent checkout: pessimistic write locks before stock validation, and atomic order placement.',
     points: [
@@ -141,12 +139,12 @@ export const projects: Project[] = [
     repo: gh('prost'),
   },
   {
-    name: 'Buy or Wait — AI financial decision agent',
+    name: 'Buy or Wait: AI financial decision agent',
     tagline: 'Decides whether a purchase is safe to make now, later, or in installments.',
     hard: 'The LLM never touches a number. It only extracts facts and words the explanation; every amount is deterministic Python.',
     points: [
       'Prompt-injection tests prove injected text cannot change numeric output.',
-      'Cached LLM calls — re-runs cost zero API calls.',
+      'Cached LLM calls, so re-runs cost zero API calls.',
       '90% holdout accuracy on payment method and affordability.',
     ],
     tags: ['Python', 'Gemini', 'LLM pipelines'],
@@ -154,7 +152,7 @@ export const projects: Project[] = [
     repo: gh('buy-or-wait-financial-decision-agent'),
   },
   {
-    name: 'Deutsch Lehrer — German verb tutor',
+    name: 'Deutsch Lehrer: German verb tutor',
     tagline: 'Learn 1,000 German verbs across three tenses, on phone or laptop.',
     hard: 'Zero hallucinated conjugations: forms come from a dictionary, the model only writes example sentences.',
     points: [
@@ -180,6 +178,7 @@ export const moreProjects: MoreProject[] = [
     name: 'Multimodal message router',
     tagline: 'Rules + LLM routing for text, image and voice, with cached embeddings as evidence (HackerRank Orchestrate, Aug 2026).',
     tags: ['TypeScript', 'Node.js', 'Gemini'],
+    repo: gh('message-notification-router'),
   },
   {
     name: "Rucksack'd",
@@ -201,44 +200,69 @@ export const experience: {
   groups: ExperienceGroup[];
 } = {
   company: 'Cognizant Technology Solutions',
-  period: '2017 – 2022',
+  period: '2017 to 2022',
   groups: [
     {
       title: 'Backend & integration',
       points: [
-        'Built REST-to-SOAP middleware (Node.js) so REST-only clients could drive legacy Cisco CUCM/UCCX SOAP/AXL backends, with unified error handling — removed recurring integration conflicts.',
-        'Built a Python, OAuth-secured migration tool moving contact-center configuration from on-prem Cisco UCCX to Webex Contact Center — a multi-hour manual process now runs in minutes.',
+        'Built REST-to-SOAP middleware (Node.js) so REST-only clients could drive legacy Cisco CUCM/UCCX SOAP/AXL backends, with unified error handling, which removed recurring integration conflicts.',
+        'Built a Python, OAuth-secured migration tool moving contact center configuration from on-prem Cisco UCCX to Webex Contact Center.',
         "Designed a Genesys Cloud ↔ Salesforce integration that pops the caller's record for agents and logs calls automatically, removing manual lookup and post-call data entry.",
-        'Owned L2/L3 production incidents and post-mortems; cut average resolution time 35% by turning 30+ incidents into runbooks.',
+        'Handled L2 and L3 incidents on Cisco UC and Genesys Cloud platforms, working vendor and client escalations through to resolution.',
       ],
     },
     {
       title: 'Contact center & UC platforms',
       points: [
-        'Administered enterprise voice infrastructure across 9 Cisco UCCE/CUCM clusters — dial plans, extension mobility and routing for thousands of daily interactions.',
-        'Ran a phased CUCM 11.x → 12.x upgrade across all 9 clusters with Cisco TAC, holding 99.7% uptime through the transition.',
-        'Configured Genesys Cloud CX queues, skill-based routing, wrap-up codes and SIP telephony integrations across two multi-year client engagements.',
+        'Supported a cluster-by-cluster 11.x to 12.x upgrade across all nine clusters: pre-upgrade backups, testing after each phase, monitoring, and Cisco TAC cases followed through to resolution.',
+        'Supported the migration of users from Jabber to Webex, starting with a pilot and moving further users across clusters in phases.',
+        'Contributed as a junior engineer to a team project migrating a back-office phone system from Avaya to Microsoft Teams Phone: documented existing call handling, rebuilt call queues, auto attendants, hunt groups and holiday schedules in Teams, and helped troubleshoot post-cutover issues.',
+        'Configured Genesys Cloud CX queues, skill-based routing, wrap-up codes and SIP telephony integrations.',
         'Designed inbound, outbound and in-queue IVR flows in Genesys Architect, including a self-service flow where callers reset PINs via chained REST calls.',
       ],
     },
     {
       title: 'Full-stack & delivery',
       points: [
-        'Delivered a Spring Boot + PostgreSQL application with a React frontend end to end in three months, saving ~2 staff-hours every time the task runs.',
-        'Raised test coverage to 85% with JUnit and Mockito and introduced mandatory code review.',
-        'Built CI/CD pipelines (Jenkins, GitHub Actions) that cut release cycles from 2 days to 6 hours.',
-        'Mentored 4 junior engineers; ran standups and sprint planning.',
+        'Built a full-stack self-service application (Java backend, React frontend) that lets business teams schedule banner messages for contact center agents, replacing manual database updates and email requests. Users select agent teams and schedule in UTC, with input validation in the form. Taken from idea to production through lab, non-production and production with client approval.',
+        'Took ownership of a Spring Boot and React web portal that gave about 12,000 agents working from home their telephony numbers, in a 40-day project with a team of more than ten people.',
+        'Ran both applications as two instances behind a load balancer with rolling deployments and smoke tests.',
+        'Wrote JUnit unit tests, database integration tests, API tests, Jest frontend tests and Playwright end-to-end tests, working toward an 85% coverage target.',
+        'Built and owned a GitHub Actions CI/CD pipeline: build, automated tests, SonarQube static analysis, OWASP dependency check, versioned artifacts in AWS CodeArtifact, automated deployment through lab and non-production, manual approval before production.',
+        'Mentored four junior engineers and ran standups and sprint planning.',
       ],
     },
   ],
 };
 
+export const caseStudies: CaseStudy[] = [
+  {
+    name: 'Work-from-home agent telephony portal',
+    problem: 'About 12,000 agents working from home needed their telephony numbers.',
+    built: 'A Spring Boot and React web portal that gave agents their telephony numbers.',
+    owned: 'I took ownership of the portal, working in a team of more than ten people.',
+    delivery: 'A 40-day project. Ran as two instances behind a load balancer with rolling deployments and smoke tests.',
+  },
+  {
+    name: 'Agent banner message scheduler',
+    problem: 'Business teams scheduled banner messages for contact center agents through manual database updates and email requests.',
+    built: 'A full-stack self-service application (Java backend, React frontend). Users select agent teams and schedule in UTC, with input validation in the form.',
+    owned: 'I built the application and took it from idea to production.',
+    delivery: 'Moved through lab, non-production and production with client approval. Ran as two instances behind a load balancer with rolling deployments and smoke tests.',
+  },
+];
+
+export const certifications: { name: string; period: string }[] = [
+  { name: 'Oracle Cloud Infrastructure (OCI) DevOps Professional', period: '2025' },
+  { name: 'Genesys Certified Associate - PureCloud', period: '2019 to 2021' },
+];
+
 export const skills: { group: string; items: string[] }[] = [
   { group: 'Backend', items: ['Go', 'Java', 'Spring Boot', 'Node.js', 'Express', 'Python', 'Django REST Framework', 'REST', 'GraphQL', 'SOAP'] },
-  { group: 'Frontend', items: ['TypeScript', 'React', 'Vue 3', 'Astro', 'Tailwind CSS', 'Thymeleaf'] },
-  { group: 'Data & messaging', items: ['PostgreSQL', 'MySQL', 'MongoDB', 'Redis', 'RabbitMQ', 'JPA/Hibernate', 'Flyway'] },
-  { group: 'Cloud & DevOps', items: ['Docker', 'Kubernetes', 'Terraform', 'Ansible', 'GitHub Actions', 'Jenkins', 'AWS (CodePipeline, CodeBuild)', 'Observability (LGTM)'] },
-  { group: 'Contact center & UC', items: ['Genesys Cloud CX', 'Genesys Architect', 'Cisco UCCE/CUCM', 'SIP/VoIP', 'Contact Center (CCaaS)', 'Salesforce CTI'] },
+  { group: 'Frontend', items: ['TypeScript', 'React', 'Vue 3', 'Tailwind CSS', 'Thymeleaf'] },
+  { group: 'Data & messaging', items: ['PostgreSQL', 'MongoDB', 'Redis', 'RabbitMQ', 'JPA/Hibernate', 'Flyway'] },
+  { group: 'Cloud & DevOps', items: ['Docker', 'GitHub Actions', 'CI/CD', 'SonarQube', 'Observability (LGTM)'] },
+  { group: 'Contact center & UC', items: ['Genesys Cloud CX', 'Genesys Architect', 'Cisco UCCE/CUCM', 'Cisco Finesse', 'Webex', 'Microsoft Teams Phone & Direct Routing', 'SIP/VoIP', 'Contact Center (CCaaS)', 'Salesforce CTI'] },
   { group: 'Testing & practice', items: ['JUnit', 'Mockito', 'Saga/Outbox patterns', 'Prompt-injection testing'] },
   { group: 'AI', items: ['LLM/AI agents', 'Gemini API', 'LLM pipelines with deterministic guards', 'Claude Code'] },
 ];
@@ -253,6 +277,6 @@ export const education: { degree: string; school?: string; period?: string; note
   {
     degree: 'BSc in Computer Science Engineering',
     school: 'Acharya Institute of Technology',
-    period: '2012 – 2016',
+    period: 'Mar 2013 – Aug 2017',
   },
 ];

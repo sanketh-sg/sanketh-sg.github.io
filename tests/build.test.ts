@@ -18,10 +18,9 @@ test('without JS, the theme toggle is hidden', () => {
   assert.match(html, /<noscript>\s*<style>[^<]*\[data-theme-toggle\][^<]*display:\s*none/);
 });
 
-test('tapping a link in the phone menu closes it', () => {
-  const scripts = (html.match(/<script[^>]*>[\s\S]*?<\/script>/g) ?? []).join('\n');
-  assert.match(scripts, /details/);
-  assert.match(scripts, /removeAttribute\(['"]open['"]\)|\.open\s*=\s*false/);
+test('header has one nav, so section links are not duplicated', () => {
+  assert.equal((html.match(/<nav[\s>]/g) ?? []).length, 1);
+  assert.equal((html.match(/href="#about"/g) ?? []).length, 1);
 });
 const count = (re: RegExp) => (html.match(re) ?? []).length;
 
@@ -49,7 +48,7 @@ test('footer shows the copyright line', () => {
 });
 
 test('every content section exists and every in-page anchor resolves', () => {
-  for (const id of ['about', 'work', 'experience', 'skills', 'education', 'contact']) {
+  for (const id of ['about', 'work', 'experience', 'case-studies', 'skills', 'education', 'contact']) {
     assert.ok(html.includes(`id="${id}"`), id);
   }
   for (const [, id] of html.matchAll(/href="#([^"]+)"/g)) {
@@ -68,7 +67,7 @@ test('page carries the confirmed contact and profile facts', () => {
     'German (B1',
     'Oct 2022 – Mar 2026',
     'Acharya Institute of Technology',
-    '2012 – 2016',
+    'Mar 2013 – Aug 2017',
     'href="#about"',
   ]) assert.ok(html.includes(s), s);
 });
